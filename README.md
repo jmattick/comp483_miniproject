@@ -1,1 +1,3 @@
-# comp483_miniproject
+# comp483_miniproject 
+
+Details:
