@@ -1,9 +1,23 @@
 from Bio import Entrez #import Entrez
 from Bio import SeqIO #import SeqIO
+import sys #import sys to use parameters
 
-#input email address
-with open('email.txt', 'r') as f: #import email address from file
-    email = f.readline().strip() #store email in variable
+params = sys.argv #get list of parameters
+
+email = '' #initialize email
+
+for i in range(len(params)-1): #loop through parameters
+    if params[i] == '-e' or params[i] == '--email': #if parameter is email
+        email = params[i + 1] #set email
+        break #end loop
+
+#make sure that email set
+while True:
+    try: #if email is not empty break loop
+        email != ''
+        break
+    except ValueError: #else raise ValueError
+        print('no valid email address') #output error message
 
 Entrez.email = email #set Entrez email
 
