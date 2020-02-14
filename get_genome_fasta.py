@@ -33,7 +33,7 @@ with open('idx/genome.fa','w') as z: #open fasta output file
     num_CDS = 0 #initialize number of CDS features to 0
     for feature in record.features: #loop through all features in record
         if feature.type == "CDS": #if feature is CDS feature
-            z.write('> ' + str(feature.qualifiers['protein_id'][0]) + '\n') #set protein_id as fasta name
+            z.write('>' + str(feature.qualifiers['protein_id'][0]) + '\n') #set protein_id as fasta name
             z.write(str(feature.location.extract(record).seq) + '\n') #write sequence to file
             num_CDS += 1 #increment CDS count
 
