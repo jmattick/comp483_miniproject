@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from Bio import Entrez #import Entrez
 from Bio import SeqIO #import SeqIO
 import sys #import sys to use parameters
@@ -27,7 +29,7 @@ with open('genome_acc.txt','r') as f: #get genome accession number
 handle = Entrez.efetch(db='nucleotide', id=genome_acc, rettype='gbwithparts', retmode='txt') #fetch genbank record with features using genome acc number
 record = SeqIO.read(handle,'gb') #read handle into SeqIO object
 
-with open('genome.fa','w') as z: #open fasta output file 
+with open('idx/genome.fa','w') as z: #open fasta output file 
     num_CDS = 0 #initialize number of CDS features to 0
     for feature in record.features: #loop through all features in record
         if feature.type == "CDS": #if feature is CDS feature
