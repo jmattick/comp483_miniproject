@@ -23,6 +23,9 @@
     ```
     python3 build_kallisto_index.py
     ```
-
+2. Run 'kallisto_quant.py' to quantify genes using fastq files in data directory and genome index in idx directory
+    ```
+    python3 kallisto_quant.py
+    ```
 
 
