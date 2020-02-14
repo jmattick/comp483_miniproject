@@ -17,6 +17,12 @@
     ```
     python3 get_genome_fasta.py -e name@email.com
     ```
+# Kallisto
+
+1. Run 'build_kallisto_index.py' to create an index of the genome in the 'idx' directory
+    ```
+    python3 build_kallisto_index.py
+    ```
 
 
 
