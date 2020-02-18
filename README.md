@@ -1,7 +1,9 @@
 # COMP483 Mini Project 
 
-# Tools needed:
+# Software / Tools needed:
 
+- Linux/Unix
+- Python3
 - fastq-dump
 - kallisto
 
@@ -17,7 +19,7 @@
     ```
     python3 get_genome_fasta.py -e name@email.com
     ```
-# Kallisto
+# Kallisto:
 
 1. Run 'build_kallisto_index.py' to create an index of the genome in the 'idx' directory
     ```
