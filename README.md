@@ -11,12 +11,15 @@
 
 1. Store list of SRR accession numbers in 'acc_list.txt' file.
 2. Run 'get_fastq.py' to output paired-end fastq files into specified directory.
+	
 	Parameters: 
+
 	- ``a`` or ``--acc_list``: path to input file containing list of accession numbers
 	- ``-o`` or ``--output``: path to output directory
-    ```
-    python3 get_fastq.py -a acc_list.txt -o data/
-    ```
+
+	```
+	 python3 get_fastq.py -a acc_list.txt -o data/
+	```
 3. Store genome accesion number in 'genome_acc.txt'
 4. Run 'get_genome_fasta.py' to retrieve all CDS sequences into a file named 'genome.fa'. Use '-e' or '--email' to set email address.
     ```
