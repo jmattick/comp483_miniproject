@@ -17,7 +17,7 @@
 	- ``a`` or ``--acc_list``: path to input file containing list of accession numbers
 	- ``-o`` or ``--output``: path to output directory
 
-
+	Example:
 	```
 	 python3 get_fastq.py -a acc_list.txt -o data/
 	```
