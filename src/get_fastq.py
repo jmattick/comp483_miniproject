@@ -20,7 +20,7 @@ if acc_list == None or out_path == None : #check that parameters have been set
 else:
     SRR = [] #list to store SRR numbers
 
-    with open('acc_list.txt', 'r') as f: #open file containing accession numbers
+    with open(acc_list, 'r') as f: #open file containing accession numbers
         for line in f:
             SRR.append(line.strip()) #add each accession number to SRR list
 
