@@ -39,16 +39,25 @@
 1. Run 'build_kallisto_index.py' to create an index of the genome
 
 	Parameters:
+
 	- ``-g`` or ``--genome_dir``: path to directory containing genome fasta file
 
 	Example:
 	```
 	python3 build_kallisto_index.py -g idx/
 	```
-2. Run 'kallisto_quant.py' to quantify genes using fastq files in data directory and genome index in idx directory. Results will be output to 'results' directory.
-    ```
-    python3 kallisto_quant.py
-    ```
+2. Run 'kallisto_quant.py' to quantify genes using fastq files and genome index.
+
+	Parameters:
+
+	- ``-f`` or ``--fastq_dir``: path to directory containing fastq files
+	- ``-g`` or ``--genome_dir``: path to directory containing genome index
+	- ``-o`` or ``--output``: path to results output directory 
+
+	Example:
+	```
+	python3 kallisto_quant.py -f data/ -g idx/ -o results/
+	```
 # Sleuth Differential Analysis:
 
 1. Create 'samples.txt' tab delimited file containing sample names, conditions, and paths to kallisto output. Example:
