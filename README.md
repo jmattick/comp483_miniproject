@@ -70,8 +70,10 @@
     SRR4	cond2	results/SRR4
     ```
 
-2. Run 'sleuth_de.R' to identify differentially expressed transcripts. Sleuth results with be output to sleuth_results.txt.
-    ```
-    Rscript sleuth_de.R
-    ```
+2. Run 'sleuth_de.R' to identify differentially expressed transcripts. Provide path to sample matrix and output file.
+
+	Example:
+	```
+	Rscript sleuth_de.R samples.txt sleuth_results.txt
+	```
 
