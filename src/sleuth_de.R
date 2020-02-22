@@ -1,8 +1,10 @@
+args = commandArgs(trailingOnly = T) #get list of arguments
+
 #load sleuth
 library(sleuth)
 
 #sample table
-stab <- read.table("samples.txt", header=TRUE, stringsAsFactors=FALSE)
+stab <- read.table(args[1], header=TRUE, stringsAsFactors=FALSE)
 
 #initialize object
 so <- sleuth_prep(stab)
@@ -26,7 +28,7 @@ sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE)
 sleuth_significant <- dplyr::filter(sleuth_table, qval <= 0.05) %>% dplyr::arrange(pval) 
 
 #write top 10 transcripts to file
-write.table(sleuth_significant, file="sleuth_results.txt",quote = FALSE,row.names = FALSE)
+write.table(sleuth_significant, file=args[2],quote = FALSE,row.names = FALSE)
 
 #extract columns for log file
 logfile_data <- select(sleuth_significant, target_id, test_stat, pval, qval)
