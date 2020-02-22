@@ -4,6 +4,7 @@
 
 - Linux/Unix
 - Python3
+- Biopython
 - fastq-dump
 - kallisto
 
@@ -21,11 +22,18 @@
 	```
 	 python3 get_fastq.py -a acc_list.txt -o data/
 	```
-3. Store genome accesion number in 'genome_acc.txt'
-4. Run 'get_genome_fasta.py' to retrieve all CDS sequences into a file named 'genome.fa'. Use '-e' or '--email' to set email address.
-    ```
-    python3 get_genome_fasta.py -e name@email.com
-    ```
+3. Run 'get_genome_fasta.py' to retrieve all CDS sequences into a file named 'genome.fa'.
+
+	Parameters:
+
+	- ``-e`` or ``--email``: email address for Entrez
+	- ``-g`` or ``--genome_acc``: genome accession number
+	- ``-o`` or ``--output``: output directory for fasta file    
+
+	Example:
+	```
+	python3 get_genome_fasta.py -e name@email.com -g EF999921 -o idx/
+	```
 # Kallisto Transcript Quantification:
 
 1. Run 'build_kallisto_index.py' to create an index of the genome in the 'idx' directory.
