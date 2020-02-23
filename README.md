@@ -15,7 +15,7 @@
 	
 	Parameters: 
 
-	- ``a`` or ``--acc_list``: path to input file containing list of accession numbers
+	- ``-a`` or ``--acc_list``: path to input file containing list of accession numbers
 	- ``-o`` or ``--output``: path to output directory
 
 	Example:
@@ -58,17 +58,17 @@
 	```
 	python3 kallisto_quant.py -f data/ -g idx/ -o results/
 	```
-# Sleuth Differential Analysis:
+# Sleuth Differential Expression Analysis:
 
 1. Create 'samples.txt' tab delimited file containing sample names, conditions, and paths to kallisto output. Example:
 
-    ```
-    sample	condition	path
-    SRR1	cond1	results/SRR1
-    SRR2	cond2	results/SRR2
-    SRR3	cond1	results/SRR3
-    SRR4	cond2	results/SRR4
-    ```
+	```
+	sample	condition	path
+	SRR1	cond1	results/SRR1
+	SRR2	cond2	results/SRR2
+	SRR3	cond1	results/SRR3
+	SRR4	cond2	results/SRR4
+	```
 
 2. Run 'sleuth_de.R' to identify differentially expressed transcripts. Provide path to sample matrix and output file.
 
@@ -76,4 +76,19 @@
 	```
 	Rscript sleuth_de.R samples.txt sleuth_results.txt
 	```
+# Filter Host Reads using Bowtie2:
+
+1. Run 'build_bowtie2_index.py' to build bowtie2 index. 
+
+	Parameters:
+	
+	- ``-g`` or ``--genome_fasta``: path to genome fasta file
+	- ``-o`` or ``--output_name``: output path and index name
+
+	Example:
+	```
+	python3 build_bowtie2_index.py -g idx/genome.fa -o idx/EF999921
+	```
+
+
 
