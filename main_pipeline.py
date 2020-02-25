@@ -27,7 +27,7 @@ for i in range(len(params)-1):
 #set variables for test run
 if testrun == True:
     genome = 'EF999921'
-    output = 'testrun_output'
+    output = 'testrun_output/'
     samples = 'testrun/sample_info.txt'
 
 
@@ -89,31 +89,31 @@ else:
     os.system('python3 src/build_bowtie2_index.py -g ' + str(output) + 'idx/genome.fa -o ' + str(output) + 'idx/' + str(genome))
 
     #map reads to genome
-    os.system('python3 src/mapped_reads_bowtie2.py -f ' + str(output) + 'data/ -g ' + str(output) + 'idx/' + str(genome) + ' -o ' + str(output) + 'filtered_data/') 
+    os.system('python3 src/mapped_reads_bowtie2.py -f testrun/data/ -g ' + str(output) + 'idx/' + str(genome) + ' -o ' + str(output) + 'filtered_data/') 
     #log the number of reads filtered to file
     def count_reads(path, filtered):
         for file in os.listdir(str(path)): #loop through files in data directory
-        if file.endswith('_1.fastq'): #if file is first read in pair
-            base = file.split('_1.fastq')[0] #get basename of file
-            file2 = str(filtered) + str(base) + '.1.fastq'
-            original = 0 #initialize count of reads
-            with open(file,'r') as f:
-                for line in f:
-                    original += 1
+            if file.endswith('_1.fastq'): #if file is first read in pair
+                base = file.split('_1.fastq')[0] #get basename of file
+                file2 = str(filtered) + str(base) + '.1.fastq'
+                original = 0 #initialize count of reads
+                with open(file,'r') as f:
+                    for line in f:
+                        original += 1
 
-            filtered = 0 #initialize count of filtered reads
-            with open(file2, 'r') as f:
-                for line in f:
-                    filtered += 1
-            #find name of sample
-            for item in sample_info:
-                if item[0] == base:
-                    name = item[2]
-                    break
+                filtered = 0 #initialize count of filtered reads
+                with open(file2, 'r') as f:
+                    for line in f:
+                        filtered += 1
+                #find name of sample
+                for item in sample_info:
+                    if item[0] == base:
+                        name = item[2]
+                        break
 
-            #output results
-            with open(log, 'a') as z:
-                z.write(str(name) + ' had ' + str(original/4) + ' read pairs before Bowtie2 filtering and ' + str(filtered/4) + ' read pairs after.')
+                #output results
+                with open(log, 'a') as z:
+                    z.write(str(name) + ' had ' + str(original/4) + ' read pairs before Bowtie2 filtering and ' + str(filtered/4) + ' read pairs after.')
 
     count_reads(str(output) + 'data/', str(output) + 'filtered_data')
 
