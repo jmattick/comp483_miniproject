@@ -9,6 +9,8 @@ genome = None #initialize genome inxex name
 output = None #initializes output directory
 samples = None #initializes list containing sample info 
 email = None #initializes email
+testrun = False #initialize testrun boolean
+
 
 for i in range(len(params)-1):
     if params[i] == '-g' or params[i] == '--genome':
@@ -19,6 +21,14 @@ for i in range(len(params)-1):
         samples = params[i+1]
     if params[i] == '-e' or params[i] == '--email':
         email = params[i+1]
+    if params[i] == '-t' or params[i] == '--testrun':
+        testrun = True
+
+#set variables for test run
+if testrun == True:
+    genome = 'EF999921'
+    output = 'testrun_output'
+    samples = 'testrun/sample_info.txt'
 
 
 
@@ -39,9 +49,6 @@ else:
     if not os.path.exists(str(output) + 'spades_assembly/'): #data folder for filtered fastqs
         os.makedirs(str(output) + 'spades_assembly/')
 
-
-
-
     #initalize log file
     log = str(output) + 'miniProject.log'
     with open(log, 'w') as z: #will override existing
@@ -60,7 +67,8 @@ else:
         for i in range(0, len(sample_info)):
             z.write(str(sample_info[i][0]) + '\t' + str(sample_info[i][1]) + '\n')
     #get fastq files
-    os.system('python3 src/get_fastq.py -a ' + str(output) + ' acc_list.txt -o ' + str(output) + 'data/')
+    if testrun == False:
+        os.system('python3 src/get_fastq.py -a ' + str(output) + ' acc_list.txt -o ' + str(output) + 'data/')
 
     #get genome fasta
     os.system('python3 src/get_genome_fasta.py -e ' + str(email) + ' -g ' + str(genome) + ' -o ' + str(output) + 'idx/ -l' + str(log))
@@ -69,7 +77,10 @@ else:
     os.system('python3 src/build_kallisto_index.py -g ' + str(output) + 'idx/')
 
     #quantify transcripts
-    os.system('python3 src/kallisto_quant.py -f ' + str(output) + 'data/ -g ' + str(output) + 'idx/ -o ' + str(output) + 'results/')
+    if testrun:
+        os.system('python3 src/kallisto_quant.py -f testrun/data/ -g ' + str(output) + 'idx/ -o ' + str(output) + 'results/')
+    else:
+        os.system('python3 src/kallisto_quant.py -f ' + str(output) + 'data/ -g ' + str(output) + 'idx/ -o ' + str(output) + 'results/')
     
     #Sleuth analysis
     os.system('Rscript src/sleuth_de.R ' + str(output) + 'sleuth_sample_info.txt ' + str(output) + 'sleuth_results.txt ' + str(log))
