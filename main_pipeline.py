@@ -124,7 +124,7 @@ else:
     os.system('python3 src/contig_manipulation.py -a ' + str(output) + 'spades_assembly/ -l ' + str(log))
 
     #blast large contig
-    os.system('python3 src_blast_contig.py -a spades_assembly/ -l ' + str(log))
+    os.system('python3 src/blast_contig.py -a spades_assembly/ -l ' + str(log))
 
 
 
