@@ -9,6 +9,7 @@ params = sys.argv #get list of parameters
 email = None #initialize email
 genome_acc = None #initialize genome accession number
 idx_path = None #initialize output path
+log_file = None #initialize path to log file
 
 for i in range(len(params)-1): #loop through parameters
     if params[i] == '-e' or params[i] == '--email': #if parameter is email
@@ -17,6 +18,11 @@ for i in range(len(params)-1): #loop through parameters
         genome_acc = params[i+1]
     if params[i] == '-o' or params[i] == '--output': #if parameter is output path
         idx_path = params[i+1]
+    if params[i] == '-l' or params[i] == '--log': #if parameter is output path
+        log_file = params[i+1]
+
+if log_file == None:
+    log_file = 'miniProject.log'
 
 #make sure that parameters are set
 
@@ -35,5 +41,5 @@ else:
                 z.write(str(feature.location.extract(record).seq) + '\n') #write sequence to file
                 num_CDS += 1 #increment CDS count
 
-    with open('miniProject.log','a') as z: #open miniProject.log file
+    with open(log_file,'a') as z: #open miniProject.log file
         z.write('The HCMV genome (' + str(genome_acc) + ') has ' + str(num_CDS) + ' CDS.\n') #ouput number of cds features to log
