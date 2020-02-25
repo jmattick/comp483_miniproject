@@ -117,3 +117,13 @@
 	python3 spades_assembly.py -f filtered_data/ -o spades_assembly 
 	```
 
+2. Run 'contig_manipulation.py' to output a concatenated fasta file of all contigs in assembly over 1000bp.
+
+	Parameters:
+
+	- ``-a`` or ``--assembly``: path to SPAdes assembly directory
+
+	Example:
+	```
+	python3 contig_manipulation.py -a spades_assembly/
+	```
