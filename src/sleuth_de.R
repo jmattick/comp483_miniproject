@@ -34,4 +34,4 @@ write.table(sleuth_significant, file=args[2],quote = FALSE,row.names = FALSE)
 logfile_data <- select(sleuth_significant, target_id, test_stat, pval, qval)
 
 #output data to log
-write.table(logfile_data, file="miniProject.log", quote = FALSE, row.names = FALSE,  append = TRUE)
+write.table(logfile_data, file=args[3], quote = FALSE, row.names = FALSE,  append = TRUE)
