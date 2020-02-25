@@ -30,6 +30,7 @@
 	- ``-e`` or ``--email``: email address for Entrez
 	- ``-g`` or ``--genome_acc``: genome accession number
 	- ``-o`` or ``--output``: output directory for fasta file    
+	- ``-l`` or ``--log_file``: log output file	
 
 	Example:
 	```
@@ -75,7 +76,7 @@
 
 	Example:
 	```
-	Rscript sleuth_de.R samples.txt sleuth_results.txt
+	Rscript sleuth_de.R samples.txt sleuth_results.txt file.log
 	```
 # Filter Host Reads using Bowtie2:
 
