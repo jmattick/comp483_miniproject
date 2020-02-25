@@ -103,4 +103,17 @@
 	python3 mapped_reads_bowtie2.py -f data/ -g idx/EF999921 -o filtered_data/
 	```
 
+# Assemble Genome using SPAdes:
+
+1. Run 'spades_assembly.py' on filtered fastq files from bowtie2 output. 
+
+	Parameters:
+	
+	- ``-f`` or ``--fastq_dir``: path to directory containing filtered reads
+	- ``o`` or ``--output``: path to output directory
+
+	Example:
+	```
+	python3 spades_assembly.py -f filtered_data/ -o spades_assembly 
+	```
 
