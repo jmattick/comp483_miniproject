@@ -7,6 +7,7 @@
 - Biopython
 - fastq-dump
 - kallisto
+- bowtie2
 
 # Retrieving Data:
 
@@ -89,6 +90,17 @@
 	```
 	python3 build_bowtie2_index.py -g idx/genome.fa -o idx/EF999921
 	```
+2. Run 'mapped_reads_bowtie2.py' to get fastq files for reads that map to the genome. 
 
+	Parameters:
+	
+	- ``-g`` or ``--genome_directory``: path to genome directory including index name
+	- ``-f`` or ``--fastq_directory``: path to fastq directory
+	- ``-o`` or ``--output``: path to output filtered fastq files
+
+	Example:
+	```
+	python3 mapped_reads_bowtie2.py -f data/ -g idx/EF999921 -o filtered_data/
+	```
 
 
