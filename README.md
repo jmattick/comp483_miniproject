@@ -127,3 +127,17 @@
 	```
 	python3 contig_manipulation.py -a spades_assembly/
 	```
+
+# Blast Contig
+
+1. Run 'blast_contig.py' to blast concatenated contig to Herpesviridae nt database.
+
+	Parameters: 
+	
+	- ``-a`` or ``-assembly``: directory containing concatenated contig file
+
+	Example:
+	```
+	python3 blast_contig.py -a spades_assembly/
+	```
+
