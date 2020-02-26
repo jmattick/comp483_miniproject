@@ -42,4 +42,4 @@ else:
                 num_CDS += 1 #increment CDS count
 
     with open(log_file,'a') as z: #open miniProject.log file
-        z.write('The HCMV genome (' + str(genome_acc) + ') has ' + str(num_CDS) + ' CDS.\n') #ouput number of cds features to log
+        z.write('The HCMV genome (' + str(genome_acc) + ') has ' + str(num_CDS) + ' CDS.') #ouput number of cds features to log
