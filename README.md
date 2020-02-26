@@ -46,7 +46,7 @@ This pipeline is designed to process paired-end Human cytomegalovirus RNAseq dat
 	python3 main_pipeline.py -t -e name@email.com
 	```
 
-======
+---
 
 # Information on running each step separately:
 	
