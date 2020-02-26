@@ -7,12 +7,19 @@ params = sys.argv #input parameters
 
 fastq_dir = None
 output = None
+log_file = None
 
 for i in range(len(params)-1): #loop through parameters
     if params[i] == '-f' or params[i] == '--fastq_dir': #if parameter is fastq directory
         fastq_dir = params[i + 1] #set email
     if params[i] == '-o' or params[i] == '--output': #if parameter is output
         output = params[i+1]
+    if params[i] == '-l' or params[i] == '--log': #if parameter is output path
+        log_file = params[i+1]
+
+if log_file == None:
+    log_file = 'miniProject.log'
+
 if fastq_dir == None or output == None:
     print('Error: Invalid input parameters. \nSet fastq directory with -f or --fastq_dir.\nSet path to result output directory with -o or --output.')
 else:
@@ -27,6 +34,6 @@ else:
             fastqs = fastqs + ' --pe' + str(pair) + '-1 ' + str(r1) + ' --pe' + str(pair) + '-2 ' + str(r2) 
     
     spades_cmd = 'spades -k 55,77,99,127 -t 2 --only-assembler' + str(fastqs) + ' -o ' + str(output)
-    with open('miniProject.log','a') as z:
+    with open(log_file,'a') as z:
         z.write(spades_cmd)
     os.system(spades_cmd)
