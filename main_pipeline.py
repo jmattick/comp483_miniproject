@@ -71,7 +71,7 @@ else:
         os.system('python3 src/get_fastq.py -a ' + str(output) + ' acc_list.txt -o ' + str(output) + 'data/')
 
     #get genome fasta
-    os.system('python3 src/get_genome_fasta.py -e ' + str(email) + ' -g ' + str(genome) + ' -o ' + str(output) + 'idx/ -l' + str(log))
+    os.system('python3 src/get_genome_fasta.py -e ' + str(email) + ' -g ' + str(genome) + ' -o ' + str(output) + 'idx/ -l ' + str(log))
     
     #build kalliston index
     os.system('python3 src/build_kallisto_index.py -g ' + str(output) + 'idx/')
@@ -91,13 +91,13 @@ else:
     #map reads to genome
     os.system('python3 src/mapped_reads_bowtie2.py -f testrun/data/ -g ' + str(output) + 'idx/' + str(genome) + ' -o ' + str(output) + 'filtered_data/') 
     #log the number of reads filtered to file
-    def count_reads(path, filtered):
+    def count_reads(path, filtered_path):
         for file in os.listdir(str(path)): #loop through files in data directory
             if file.endswith('_1.fastq'): #if file is first read in pair
                 base = file.split('_1.fastq')[0] #get basename of file
-                file2 = str(filtered) + str(base) + '.1.fastq'
+                file2 = str(filtered_path) + str(base) + '.1.fastq'
                 original = 0 #initialize count of reads
-                with open(file,'r') as f:
+                with open(str(path) + str(file),'r') as f:
                     for line in f:
                         original += 1
 
@@ -113,12 +113,14 @@ else:
 
                 #output results
                 with open(log, 'a') as z:
-                    z.write(str(name) + ' had ' + str(original/4) + ' read pairs before Bowtie2 filtering and ' + str(filtered/4) + ' read pairs after.')
-
-    count_reads(str(output) + 'data/', str(output) + 'filtered_data')
+                    z.write('\n' + str(name) + ' had ' + str(original/4) + ' read pairs before Bowtie2 filtering and ' + str(filtered/4) + ' read pairs after.')
+    if testrun:
+        count_reads('testrun/data/', str(output) + 'filtered_data/')
+    else:
+        count_reads(str(output) + 'data/', str(output) + 'filtered_data/')
 
     #spades assembly
-    os.system('python3 src/spades_assembly.py -f ' + str(output) + 'filtered_data/ -o ' + str(output) + 'spades_assembly/' )
+    os.system('python3 src/spades_assembly.py -f ' + str(output) + 'filtered_data/ -o ' + str(output) + 'spades_assembly/ -l ' + str(log))
 
     #generate large contig
     os.system('python3 src/contig_manipulation.py -a ' + str(output) + 'spades_assembly/ -l ' + str(log))
