@@ -68,7 +68,7 @@ else:
             z.write(str(sample_info[i][0]) + '\t' + str(sample_info[i][1]) + '\n')
     #get fastq files
     if testrun == False:
-        os.system('python3 src/get_fastq.py -a ' + str(output) + ' acc_list.txt -o ' + str(output) + 'data/')
+        os.system('python3 src/get_fastq.py -a ' + str(output) + 'acc_list.txt -o ' + str(output) + 'data/')
 
     #get genome fasta
     os.system('python3 src/get_genome_fasta.py -e ' + str(email) + ' -g ' + str(genome) + ' -o ' + str(output) + 'idx/ -l ' + str(log))
