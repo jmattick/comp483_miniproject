@@ -35,5 +35,5 @@ else:
     
     spades_cmd = 'spades -k 55,77,99,127 -t 2 --only-assembler' + str(fastqs) + ' -o ' + str(output)
     with open(log_file,'a') as z:
-        z.write(spades_cmd)
+        z.write('\n' + str(spades_cmd))
     os.system(spades_cmd)
