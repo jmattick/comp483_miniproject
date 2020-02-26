@@ -64,8 +64,9 @@ else:
         for i in range(1, len(sample_info)):
             z.write(str(sample_info[i][0]) + '\n')
     with open(str(output) + 'sleuth_sample_info.txt', 'w') as z:
-        for i in range(0, len(sample_info)):
-            z.write(str(sample_info[i][0]) + '\t' + str(sample_info[i][1]) + '\n')
+        z.write('sample\tcondition\tpath\n')
+        for i in range(1, len(sample_info)):
+            z.write(str(sample_info[i][0]) + '\t' + str(sample_info[i][1]) + '\t' + str(output) + 'results/' + sample_info[i][0]+'\n')
     #get fastq files
     if testrun == False:
         os.system('python3 src/get_fastq.py -a ' + str(output) + 'acc_list.txt -o ' + str(output) + 'data/')
