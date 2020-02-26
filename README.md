@@ -38,7 +38,7 @@ This pipeline is designed to process paired-end Human cytomegalovirus RNAseq dat
 
 	Example of running pipeline on entire dataset:
 	```
-	python3 main_pipeline.py -s sample_info.txt -g EF999921 -o . -e name@email.com
+	python3 main_pipeline.py -s sample_info.txt -g EF999921 -o pipeline_results/ -e name@email.com
 	```
 
 	Example of running pipeline on test dataset:
