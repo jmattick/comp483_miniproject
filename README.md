@@ -1,5 +1,9 @@
 # COMP483 Mini Project 
 
+# Description
+
+This pipeline is designed to process paired-end Human cytomegalovirus RNAseq data from SRA using only accession numbers and user-provided sample information as input. 
+
 # Software / Tools needed:
 
 - Linux/Unix
@@ -7,8 +11,45 @@
 - Biopython
 - fastq-dump
 - kallisto
+- R
 - bowtie2
+- SPAdes
 
+# Run Pipeline:
+
+1. Create tab-delimited file containing sample information in the order of the following example:
+	```
+	sample	condition	name
+	SRR5660030	2dpi	Donor 1 (2dpi)
+	SRR5660033	6dpi	Donor 1 (6dpi)
+	SRR5660044	2dpi	Donor 3 (2dpi)
+	SRR5660045	6dpi	Donor 3 (6dpi)
+	```
+
+2. Run 'main_pipeline.py' to run through the entire pipeline.
+	
+	Parameters:
+
+	- ``-s`` or ``--sample_info``: path to tab-delimited file created in step 1
+	- ``-g`` or ``--genome``: genome accession number
+	- ``-o`` or ``--output_directory``: directory for output files
+	- ``-e`` or ``--email``: email address for use with Entrez
+	- ``-t`` or ``--testrun``: include to run pipeline on test dataset
+
+	Example of running pipeline on entire dataset:
+	```
+	python3 main_pipeline.py -s sample_info.txt -g EF999921 -o . -e name@email.com
+	```
+
+	Example of running pipeline on test dataset:
+	```
+	python3 main_pipeline.py -t -e name@email.com
+	```
+
+======
+
+# Information on running each step separately:
+	
 # Retrieving Data:
 
 1. Store list of SRR accession numbers in 'acc_list.txt' file.
