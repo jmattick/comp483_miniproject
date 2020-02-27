@@ -24,7 +24,7 @@ if assembly == None:
 else:
     with open(str(assembly) + 'concatenated_contig.fasta','r') as f:
         contig = list(SeqIO.parse(f, 'fasta'))
-    result_handle=NCBIWWW.qblast("blastn","nt",contig[0].seq, entrez_query = "Herpesviridae", hitlist_size = 10) #call blast
+    result_handle=NCBIWWW.qblast("blastn","nr",contig[0].seq, entrez_query = "Herpesviridae", hitlist_size = 10) #call blast
     blast_records = list(NCBIXML.parse(result_handle))
 
     with open(log, 'a') as z:
