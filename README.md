@@ -17,7 +17,7 @@ This pipeline is designed to process paired-end Human cytomegalovirus RNAseq dat
 
 # Run Pipeline:
 
-1. Create tab-delimited file containing sample information in the order of the following example:
+1. Create a tab-delimited file containing sample information in the order of the following example and include the headers "sample, condition, name". The first column should contain the SRA accession numbers for each sample. The second column should describe the condition being compared. The final column should include the name or description of the sample.
 	```
 	sample	condition	name
 	SRR5660030	2dpi	Donor 1 (2dpi)
